@@ -20,19 +20,16 @@ async def on_ready():
         print(e)
     print('Hwei online')
 
-#Loads all cogs
+
 async def load():
-    try:
-        for filename in os.listdir('./cogs'):
-            if filename.endswith('.py'):
-                await bot.load_extension(f'cogs.{filename[:-3]}')
-    except Exception as e:
-        print(e)
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            await bot.load_extension(f'cogs.{filename[:-3]}')
 
 #Starts the bot and runs the load function
 async def main():
-    await bot.start(os.getenv('BOT_TOKEN'))
     await load()
+    await bot.start(os.getenv('BOT_TOKEN'))
 
 
 asyncio.run(main())
